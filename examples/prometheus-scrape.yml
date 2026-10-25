@@ -1,0 +1,9 @@
+# prometheus.yml の scrape_configs に追記する例
+# PrometheusとExporterが同じDockerネットワーク内にいる場合
+scrape_configs:
+  - job_name: be900
+    scrape_interval: 30s
+    scrape_timeout: 20s
+    static_configs:
+      - targets:
+          - be900-exporter:9119

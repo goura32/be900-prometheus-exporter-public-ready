@@ -1,0 +1,15 @@
+services:
+  be900-exporter:
+    build: .
+    container_name: be900-exporter
+    restart: unless-stopped
+    environment:
+      PYTHONUNBUFFERED: "1"
+      BE900_ROUTER_IP: "${BE900_ROUTER_IP:?Set BE900_ROUTER_IP in your .env file}"
+    ports:
+      - "127.0.0.1:9119:9119"
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
